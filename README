@@ -1,0 +1,24 @@
+Example:
+
+  ./isophotes 1024 2.0 nofill isophotes.png
+
+or
+
+  ./isophotes 1024 1.4 fill isophotes.png
+
+"Filling" also fills the corners of the image. This is to enable
+fast, OpenGL-scaling of the texture.
+
+However, it has some problems:
+- the image is scaled by sqrt(2), so it is only an approximate
+  isophote map
+- scaling of the texture matrix with a repeated isophote texture
+  may look right most of the time, but it is not
+
+If you find yourself doing this, consider the following options:
+- use several texture maps with various widths [recommended]
+- use a 1D texture map (half red, half white); this is roughly
+  the same as if you used equidistant concentric circles
+  (which is an even worse approximation of the isophotes than the
+   "fill" version, but it does not have the repeat-problem)
+
